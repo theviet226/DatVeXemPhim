@@ -37,7 +37,7 @@ class ThongTinDatGhe extends Component {
                             return <tr key={index}>
                                 <td>{gheDangDat.soGhe}</td>
                                 <td>{gheDangDat.gia}</td>
-                                <td><button onClick={() => {
+                                <td className='text-center'><button onClick={() => {
                                     this.props.dispatch(huyVeCreator(gheDangDat.soGhe))
                                 }} className='btn btn-danger'>Hủy</button></td>
                             </tr>
