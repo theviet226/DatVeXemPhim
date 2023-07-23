@@ -1,22 +1,43 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { datVeCreator } from '../../redux/ve-xem-phim/dat-ve-xem-phim.action';
 
 class HangGhe extends Component {
+    // renderGhe = () => {
+    //     return this.props.hangGhe.danhSachGhe.map((ghe, index) => {
+    //         let disable = false;
+    //         let cssgheDaDat = '';
+    //         if (ghe.daDat ) {
+    //             cssgheDaDat = 'gheDuocChon';
+    //             disable = true;
+    //         }
+    //         let cssGheDangDat = ''
+    //         let indexGheDangDat = this.props.danhSachGheDangDat.findIndex(gheDangDat => gheDangDat.soGhe === ghe.soGhe);
+    //         if (indexGheDangDat === -1) {
+    //             cssGheDangDat = 'gheDangChon'
+    //         }
+    //         return <button onClick={() => { this.props.datGhe(ghe) }} disabled={disable} className={`ghe ${cssgheDaDat} ${cssGheDangDat} `} key={index}>
+    //             {ghe.soGhe}
+    //         </button>
+    //     })
+    // }
     renderGhe = () => {
         return this.props.hangGhe.danhSachGhe.map((ghe, index) => {
-            let disable = false;
-            let gheDaDat = '';
-            if (ghe.daDat === true) {
-                gheDaDat = 'gheDuocChon';
-                disable = true;
+            let disabled = false
+            let cssGheDaDat = ''
+            if (ghe.daDat) {
+                cssGheDaDat = ' gheDuocChon'
+                disabled = true
             }
             let cssGheDangDat = ''
-            let indexGheDangDat = this.props.danhSachGheDangDat.findIndex((gheDangDat) => gheDangDat.soGhe === ghe.soGhe);
-            if (indexGheDangDat === -1) {
+            let indexGheDangDat = this.props.danhSachGheDangDat.findIndex(gheDangDat =>gheDangDat.soGhe === ghe.soGhe)
+            if (indexGheDangDat !== -1){
                 cssGheDangDat = 'gheDangChon'
             }
-            return <button disabled={disable} className={`ghe ${gheDaDat} `} key={index}>
-                {index + 1}
+            return <button onClick={()=>{
+                this.props.datGhe(ghe)
+            }} disabled={disabled} className={`ghe ${cssGheDaDat} ${cssGheDangDat} `} key={index}>
+                {index+1}
             </button>
         })
     }
@@ -48,5 +69,12 @@ const mapStateToProps = (rootReducer) => {
         danhSachGheDangDat: rootReducer.DatVeReducer.danhSachGheDangDat
     }
 }
+const mapDispathcToProps = (dispatch) => {
+    return {
+        datGhe: (ghe) => {
+            dispatch(datVeCreator(ghe))
+        }
+    }
+}
 
-export default connect(mapStateToProps)(HangGhe)
+export default connect(mapStateToProps,mapDispathcToProps)(HangGhe)

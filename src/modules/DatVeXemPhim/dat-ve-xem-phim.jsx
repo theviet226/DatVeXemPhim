@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import './style.css'
+
 import HangGhe from './hang-ghe'
 import ThongTinDatGhe from './thong-tin-dat-ghe'
 import danhSachGhe from '../../data/danhSachGhe.json'
+import "./style.css"
 
 
 
