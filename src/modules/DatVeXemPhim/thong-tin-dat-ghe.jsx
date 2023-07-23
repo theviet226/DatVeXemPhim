@@ -8,7 +8,7 @@ class ThongTinDatGhe extends Component {
         return (
             <div className='mt-5'>
                 <h1 className='text-light'>DANH SÁCH GHẾ BẠN CHỌN</h1>
-                <div className='mt-5'>
+                <div className='mt-3'>
                     <button className='gheDuocChon mt-3'> </button>
                     <span className='text-light' style={{
                         fontSize: '30px'
